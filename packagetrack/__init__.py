@@ -48,7 +48,10 @@ The default location for this file is ~/.packagetrack.
 
 """
 import os.path
-from ConfigParser import ConfigParser
+try:
+    from configparser import ConfigParser
+except ImportError: #python3
+    from configparser import ConfigParser
 
 from .service.fedex_interface import FedexInterface
 from .service.ups_interface   import UPSInterface
@@ -108,7 +111,7 @@ class Package(object):
 
         self.tracking_number = tracking_number.upper().replace(' ', '')
         self.shipper = None
-        for shipper, iface in _interfaces.iteritems():
+        for shipper, iface in _interfaces.items():
             if iface.identify(self.tracking_number):
                 self.shipper = shipper
                 break

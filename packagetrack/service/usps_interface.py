@@ -1,4 +1,4 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from datetime import datetime
 
 import packagetrack
@@ -125,8 +125,8 @@ class USPSInterface(BaseInterface):
             server_type = 'production'
 
         url = "%s%s" % (self.api_url[server_type],
-                        urllib.quote(self._build_request(tracking_number)))
-        webf = urllib.urlopen(url)
+                        urllib.parse.quote(self._build_request(tracking_number)))
+        webf = urllib.request.urlopen(url)
         resp = webf.read()
         webf.close()
         return resp

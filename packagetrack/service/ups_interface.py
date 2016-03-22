@@ -1,4 +1,4 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from datetime import datetime, date, time
 
 import packagetrack
@@ -70,7 +70,7 @@ class UPSInterface(BaseInterface):
 
     def _send_request(self, tracking_number):
         body = self._build_request(tracking_number)
-        webf = urllib.urlopen(self.api_url, body)
+        webf = urllib.request.urlopen(self.api_url, body)
         resp = webf.read()
         webf.close()
         return resp

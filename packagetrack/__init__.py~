@@ -110,7 +110,7 @@ class Package(object):
         config.read([configfile])
 
         self.tracking_number = tracking_number.upper().replace(' ', '')
-        self.shipper = shipper
+        self.shiper = shipper
         if self.shipper is None:
             for shipper, iface in _interfaces.items():
                 if iface.identify(self.tracking_number):
